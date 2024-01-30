@@ -1,0 +1,283 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BAR
+    LBRACKET
+    NEG
+    OP
+    PLUS_MIN
+    RBRACKET
+    SEMICOLON
+    TIMES_DIV
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> clause DOT program
+Rule 2     program -> clause DOT
+Rule 3     clause -> term CLAUSE_SEP arguments
+Rule 4     clause -> term PROB_SEP term
+Rule 5     clause -> term
+Rule 6     term -> ATOM LPAREN arguments RPAREN
+Rule 7     arguments -> term COMMA arguments
+Rule 8     arguments -> term
+Rule 9     term -> ATOM
+Rule 10    term -> NUMBER
+Rule 11    term -> VAR
+
+Terminals, with rules where they appear
+
+ATOM                 : 6 9
+BAR                  : 
+CLAUSE_SEP           : 3
+COMMA                : 7
+DOT                  : 1 2
+LBRACKET             : 
+LPAREN               : 6
+NEG                  : 
+NUMBER               : 10
+OP                   : 
+PLUS_MIN             : 
+PROB_SEP             : 4
+RBRACKET             : 
+RPAREN               : 6
+SEMICOLON            : 
+TIMES_DIV            : 
+VAR                  : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+arguments            : 3 6 7
+clause               : 1 2
+program              : 1 0
+term                 : 3 4 4 5 7 8
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . clause DOT program
+    (2) program -> . clause DOT
+    (3) clause -> . term CLAUSE_SEP arguments
+    (4) clause -> . term PROB_SEP term
+    (5) clause -> . term
+    (6) term -> . ATOM LPAREN arguments RPAREN
+    (9) term -> . ATOM
+    (10) term -> . NUMBER
+    (11) term -> . VAR
+
+    ATOM            shift and go to state 4
+    NUMBER          shift and go to state 5
+    VAR             shift and go to state 6
+
+    program                        shift and go to state 1
+    clause                         shift and go to state 2
+    term                           shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> clause . DOT program
+    (2) program -> clause . DOT
+
+    DOT             shift and go to state 7
+
+
+state 3
+
+    (3) clause -> term . CLAUSE_SEP arguments
+    (4) clause -> term . PROB_SEP term
+    (5) clause -> term .
+
+    CLAUSE_SEP      shift and go to state 8
+    PROB_SEP        shift and go to state 9
+    DOT             reduce using rule 5 (clause -> term .)
+
+
+state 4
+
+    (6) term -> ATOM . LPAREN arguments RPAREN
+    (9) term -> ATOM .
+
+    LPAREN          shift and go to state 10
+    CLAUSE_SEP      reduce using rule 9 (term -> ATOM .)
+    PROB_SEP        reduce using rule 9 (term -> ATOM .)
+    DOT             reduce using rule 9 (term -> ATOM .)
+    COMMA           reduce using rule 9 (term -> ATOM .)
+    RPAREN          reduce using rule 9 (term -> ATOM .)
+
+
+state 5
+
+    (10) term -> NUMBER .
+
+    CLAUSE_SEP      reduce using rule 10 (term -> NUMBER .)
+    PROB_SEP        reduce using rule 10 (term -> NUMBER .)
+    DOT             reduce using rule 10 (term -> NUMBER .)
+    COMMA           reduce using rule 10 (term -> NUMBER .)
+    RPAREN          reduce using rule 10 (term -> NUMBER .)
+
+
+state 6
+
+    (11) term -> VAR .
+
+    CLAUSE_SEP      reduce using rule 11 (term -> VAR .)
+    PROB_SEP        reduce using rule 11 (term -> VAR .)
+    DOT             reduce using rule 11 (term -> VAR .)
+    COMMA           reduce using rule 11 (term -> VAR .)
+    RPAREN          reduce using rule 11 (term -> VAR .)
+
+
+state 7
+
+    (1) program -> clause DOT . program
+    (2) program -> clause DOT .
+    (1) program -> . clause DOT program
+    (2) program -> . clause DOT
+    (3) clause -> . term CLAUSE_SEP arguments
+    (4) clause -> . term PROB_SEP term
+    (5) clause -> . term
+    (6) term -> . ATOM LPAREN arguments RPAREN
+    (9) term -> . ATOM
+    (10) term -> . NUMBER
+    (11) term -> . VAR
+
+    $end            reduce using rule 2 (program -> clause DOT .)
+    ATOM            shift and go to state 4
+    NUMBER          shift and go to state 5
+    VAR             shift and go to state 6
+
+    clause                         shift and go to state 2
+    program                        shift and go to state 11
+    term                           shift and go to state 3
+
+state 8
+
+    (3) clause -> term CLAUSE_SEP . arguments
+    (7) arguments -> . term COMMA arguments
+    (8) arguments -> . term
+    (6) term -> . ATOM LPAREN arguments RPAREN
+    (9) term -> . ATOM
+    (10) term -> . NUMBER
+    (11) term -> . VAR
+
+    ATOM            shift and go to state 4
+    NUMBER          shift and go to state 5
+    VAR             shift and go to state 6
+
+    term                           shift and go to state 12
+    arguments                      shift and go to state 13
+
+state 9
+
+    (4) clause -> term PROB_SEP . term
+    (6) term -> . ATOM LPAREN arguments RPAREN
+    (9) term -> . ATOM
+    (10) term -> . NUMBER
+    (11) term -> . VAR
+
+    ATOM            shift and go to state 4
+    NUMBER          shift and go to state 5
+    VAR             shift and go to state 6
+
+    term                           shift and go to state 14
+
+state 10
+
+    (6) term -> ATOM LPAREN . arguments RPAREN
+    (7) arguments -> . term COMMA arguments
+    (8) arguments -> . term
+    (6) term -> . ATOM LPAREN arguments RPAREN
+    (9) term -> . ATOM
+    (10) term -> . NUMBER
+    (11) term -> . VAR
+
+    ATOM            shift and go to state 4
+    NUMBER          shift and go to state 5
+    VAR             shift and go to state 6
+
+    arguments                      shift and go to state 15
+    term                           shift and go to state 12
+
+state 11
+
+    (1) program -> clause DOT program .
+
+    $end            reduce using rule 1 (program -> clause DOT program .)
+
+
+state 12
+
+    (7) arguments -> term . COMMA arguments
+    (8) arguments -> term .
+
+    COMMA           shift and go to state 16
+    DOT             reduce using rule 8 (arguments -> term .)
+    RPAREN          reduce using rule 8 (arguments -> term .)
+
+
+state 13
+
+    (3) clause -> term CLAUSE_SEP arguments .
+
+    DOT             reduce using rule 3 (clause -> term CLAUSE_SEP arguments .)
+
+
+state 14
+
+    (4) clause -> term PROB_SEP term .
+
+    DOT             reduce using rule 4 (clause -> term PROB_SEP term .)
+
+
+state 15
+
+    (6) term -> ATOM LPAREN arguments . RPAREN
+
+    RPAREN          shift and go to state 17
+
+
+state 16
+
+    (7) arguments -> term COMMA . arguments
+    (7) arguments -> . term COMMA arguments
+    (8) arguments -> . term
+    (6) term -> . ATOM LPAREN arguments RPAREN
+    (9) term -> . ATOM
+    (10) term -> . NUMBER
+    (11) term -> . VAR
+
+    ATOM            shift and go to state 4
+    NUMBER          shift and go to state 5
+    VAR             shift and go to state 6
+
+    term                           shift and go to state 12
+    arguments                      shift and go to state 18
+
+state 17
+
+    (6) term -> ATOM LPAREN arguments RPAREN .
+
+    CLAUSE_SEP      reduce using rule 6 (term -> ATOM LPAREN arguments RPAREN .)
+    PROB_SEP        reduce using rule 6 (term -> ATOM LPAREN arguments RPAREN .)
+    DOT             reduce using rule 6 (term -> ATOM LPAREN arguments RPAREN .)
+    COMMA           reduce using rule 6 (term -> ATOM LPAREN arguments RPAREN .)
+    RPAREN          reduce using rule 6 (term -> ATOM LPAREN arguments RPAREN .)
+
+
+state 18
+
+    (7) arguments -> term COMMA arguments .
+
+    DOT             reduce using rule 7 (arguments -> term COMMA arguments .)
+    RPAREN          reduce using rule 7 (arguments -> term COMMA arguments .)
+
