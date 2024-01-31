@@ -9,7 +9,6 @@ class Evaluator():
     def evaluate(self, tensor_sources, and_or_tree, queries):
         # TODO: Implement this
 
-
         # Our dummy And-Or-Tree (addition(img0, img1,0) is represented by digit(img0,0) AND digit(img1,0)
         # The evaluation is:
         # p(addition(img0, img1,0)) = p(digit(img0,0) AND digit(img1,0)) =

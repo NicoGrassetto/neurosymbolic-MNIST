@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+import torch
 
 class Semantics(ABC):
 
@@ -41,16 +41,17 @@ class LukasieviczTNorm(Semantics):
         pass
 
 class GodelTNorm(Semantics):
-    # TODO: Implement this
-
     def conjunction(self, a, b):
-        pass
+        """Computes the Gödel T-norm conjunction of two fuzzy values."""
+        return torch.max(a + b - 1, 0)
 
     def disjunction(self, a, b):
-        pass
+        """Computes the Gödel T-norm disjunction of two fuzzy values."""
+        return torch.min(a + b, 1)
 
     def negation(self, a):
-        pass
+        """Computes the Gödel T-norm negation of a fuzzy value."""
+        return 1 - a
 
 class ProductTNorm(Semantics):
     # TODO: Implement this

@@ -1,6 +1,5 @@
 from collections import namedtuple
 
-
 class Term(namedtuple('Term', ['functor', 'arguments'])):
 
     def __repr__(self):
@@ -13,7 +12,6 @@ class Variable(namedtuple('Variable', ['name'])):
 
     def __repr__(self):
         return str(self.name)
-
 
 class Clause(namedtuple('Clause', ['head', 'body'])):
 
