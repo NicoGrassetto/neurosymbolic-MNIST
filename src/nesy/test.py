@@ -8,16 +8,16 @@ from collections import namedtuple
 program = [parse_program("addition(X,Y,1) :- digit(X,0), digit(Y,1)."), 
            parse_program("addition(X,Y,1) :- digit(X,1), digit(Y,0).")]
 
-# # Define the queries
-# queries = [parse_term("addition(tensor(images,0), tensor(images,1), 0)")]
+# Define the queries
+queries = [parse_term("addition(tensor(images,0), tensor(images,1), 1)")]
 
-# # Create the logic engine and reason with the program and queries
-# engine = ForwardChaining()
-# results = engine.reason(program, queries)
+# Create the logic engine and reason with the program and queries
+engine = ForwardChaining()
+results = engine.reason(program, queries)
 
-# print("Results:")
-# for result in results:
-#     print(type(result))
+print("Results:")
+for result in results:
+    print(result)
 
 # nicograssetto@Nicos-MacBook-Pro neurosymbolic-MNIST % export PYTHONPATH=$PYTHONPATH:/Users/nicograssetto/Documents/Github/neurosymbolic-MNIST/src
 # (nesy) nicograssetto@Nicos-MacBook-Pro neurosymbolic-MNIST % export PYTHONPATH=$PYTHONPATH:/Users/nicograssetto/Documents/Github/neurosymbolic-MNIST/src/nesy
